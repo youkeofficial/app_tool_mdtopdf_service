@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  md-to-pdf:
+    build: ./backend
+    container_name: mdtopdf-service
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./backend/pdfs:/app/pdfs
+    restart: always
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  md-to-pdf-mcp:
+    build: ./backend
+    container_name: mdtopdf-mcp
+    command: python mcp_server.py
+    environment:
+      - MCP_TRANSPORT=sse
+      - MCP_PORT=8001
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./backend/pdfs:/app/pdfs
+    restart: always
