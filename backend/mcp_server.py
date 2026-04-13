@@ -1,4 +1,4 @@
-from fastmcp import FastMCP
+from mcp.server.fastmcp import FastMCP
 from converter import generate_pdf
 import os
 
@@ -22,8 +22,10 @@ if __name__ == "__main__":
     transport = os.getenv("MCP_TRANSPORT", "stdio")
     if transport == "sse":
         port = int(os.getenv("MCP_PORT", "8001"))
-        print(f"Starting Inspirify-PDF-Converter FastMCP Server via SSE on port {port}...")
-        mcp.run(transport="sse", host="0.0.0.0", port=port)
+        print(f"Starting MD to PDF FastMCP Server via SSE on port {port}...")
+        mcp.settings.host = "0.0.0.0"
+        mcp.settings.port = port
+        mcp.run(transport="sse")
     else:
         print("Starting Inspirify-PDF-Converter FastMCP Server via StdIO...")
         mcp.run()
