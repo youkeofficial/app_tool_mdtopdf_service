@@ -26,4 +26,5 @@ RUN mkdir -p pdfs
 
 EXPOSE 5001
 
-CMD ["python", "app.py"]
+# Use Waitress for production readiness
+CMD ["waitress-serve", "--port=5001", "app:app"]
