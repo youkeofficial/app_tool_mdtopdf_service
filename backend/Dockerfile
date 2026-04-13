@@ -27,4 +27,4 @@ RUN mkdir -p pdfs
 EXPOSE 5001
 
 # Use Waitress for production readiness
-CMD ["waitress-serve", "--port=5001", "app:app"]
+CMD ["waitress-serve", "--listen=*:5001", "app:app"]
