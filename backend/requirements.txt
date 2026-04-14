@@ -6,5 +6,5 @@ waitress==2.1.2
 uvicorn>=0.30.0
 starlette
 sse-starlette
-pdfkit==1.0.0
+fpdf==1.7.2
 markdown==3.4.4
